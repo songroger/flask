@@ -1,7 +1,5 @@
 .. currentmodule:: flask
 
-.. _app-context:
-
 The Application Context
 =======================
 
@@ -119,7 +117,7 @@ For example, you can manage a database connection using this pattern::
         return g.db
 
     @app.teardown_appcontext
-    def teardown_db():
+    def teardown_db(exception):
         db = g.pop('db', None)
 
         if db is not None:
@@ -144,7 +142,7 @@ If you're writing an extension, :data:`g` should be reserved for user
 code. You may store internal data on the context itself, but be sure to
 use a sufficiently unique name. The current context is accessed with
 :data:`_app_ctx_stack.top <_app_ctx_stack>`. For more information see
-:doc:`extensiondev`.
+:doc:`/extensiondev`.
 
 
 Events and Signals
